@@ -20,6 +20,7 @@
 		6E4CC8B71A3EEB47002D8E21 /* arrowGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4CC8B51A3EEB47002D8E21 /* arrowGreen@2x.png */; };
 		6E4CC8BA1A3FD325002D8E21 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4CC8B91A3FD325002D8E21 /* AudioToolbox.framework */; };
 		6EAEF2FC1A402B13007D7621 /* AGSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEF2FB1A402B13007D7621 /* AGSpriteButton.m */; };
+		6EAEF3011A4040C1007D7621 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEF3001A4040C1007D7621 /* BaseSprite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		6E4CC8B91A3FD325002D8E21 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6EAEF2FA1A402B13007D7621 /* AGSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSpriteButton.h; sourceTree = "<group>"; };
 		6EAEF2FB1A402B13007D7621 /* AGSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSpriteButton.m; sourceTree = "<group>"; };
+		6EAEF2FF1A4040C1007D7621 /* BaseSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSprite.h; sourceTree = "<group>"; };
+		6EAEF3001A4040C1007D7621 /* BaseSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSprite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,7 @@
 		6E4CC8881A3EE521002D8E21 /* BrainGame */ = {
 			isa = PBXGroup;
 			children = (
+				6EAEF2FE1A404099007D7621 /* Sprite */,
 				6E4CC88D1A3EE521002D8E21 /* AppDelegate.h */,
 				6E4CC88E1A3EE521002D8E21 /* AppDelegate.m */,
 				6E4CC8901A3EE521002D8E21 /* GameScene.h */,
@@ -172,6 +176,15 @@
 				6EAEF2FB1A402B13007D7621 /* AGSpriteButton.m */,
 			);
 			name = SpriteButton;
+			sourceTree = "<group>";
+		};
+		6EAEF2FE1A404099007D7621 /* Sprite */ = {
+			isa = PBXGroup;
+			children = (
+				6EAEF2FF1A4040C1007D7621 /* BaseSprite.h */,
+				6EAEF3001A4040C1007D7621 /* BaseSprite.m */,
+			);
+			name = Sprite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +295,7 @@
 				6EAEF2FC1A402B13007D7621 /* AGSpriteButton.m in Sources */,
 				6E4CC8921A3EE521002D8E21 /* GameScene.m in Sources */,
 				6E4CC88C1A3EE521002D8E21 /* main.m in Sources */,
+				6EAEF3011A4040C1007D7621 /* BaseSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -312,7 +312,9 @@
 }
 
 - (void)updateScoreInCorrect {
-    score --;
+    if (score > 0) {
+        score --;        
+    }
     [self updateScoreLabel];
 }
 
