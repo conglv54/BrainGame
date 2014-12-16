@@ -18,6 +18,7 @@
 		6E4CC8AB1A3EE521002D8E21 /* BrainGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4CC8AA1A3EE521002D8E21 /* BrainGameTests.m */; };
 		6E4CC8B61A3EEB47002D8E21 /* arrowRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4CC8B41A3EEB47002D8E21 /* arrowRed@2x.png */; };
 		6E4CC8B71A3EEB47002D8E21 /* arrowGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4CC8B51A3EEB47002D8E21 /* arrowGreen@2x.png */; };
+		6E4CC8BA1A3FD325002D8E21 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4CC8B91A3FD325002D8E21 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		6E4CC8AA1A3EE521002D8E21 /* BrainGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrainGameTests.m; sourceTree = "<group>"; };
 		6E4CC8B41A3EEB47002D8E21 /* arrowRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowRed@2x.png"; sourceTree = "<group>"; };
 		6E4CC8B51A3EEB47002D8E21 /* arrowGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowGreen@2x.png"; sourceTree = "<group>"; };
+		6E4CC8B91A3FD325002D8E21 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E4CC8BA1A3FD325002D8E21 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +114,7 @@
 			children = (
 				6E4CC88A1A3EE521002D8E21 /* Info.plist */,
 				6E4CC88B1A3EE521002D8E21 /* main.m */,
+				6E4CC8BB1A3FD330002D8E21 /* FrameWork */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -139,6 +143,14 @@
 				6E4CC8B51A3EEB47002D8E21 /* arrowGreen@2x.png */,
 			);
 			name = Resource;
+			sourceTree = "<group>";
+		};
+		6E4CC8BB1A3FD330002D8E21 /* FrameWork */ = {
+			isa = PBXGroup;
+			children = (
+				6E4CC8B91A3FD325002D8E21 /* AudioToolbox.framework */,
+			);
+			name = FrameWork;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

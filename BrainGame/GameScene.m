@@ -7,7 +7,7 @@
 //
 
 #import "GameScene.h"
-
+#import <AudioToolbox/AudioToolbox.h>
 
 // The min distance in one direction for an effective swipe.
 #define EFFECTIVE_SWIPE_DISTANCE_THRESHOLD 20.0f
@@ -56,6 +56,37 @@
     SKAction *zoom = [SKAction sequence:@[zoomIn, zoomOut]];
     
     [arrowNode runAction:zoom];
+}
+
+- (SKAction *)animationWithType:(ANIMATION_TYPE )animationType {
+    SKAction *skaction;
+    switch (animationType) {
+        case ANIMATION_CORRECT:
+            skaction = [self animationCorrect];
+            break;
+        case ANIMATION_IN_CORRECT:
+            skaction = [self animationIncorrect];
+            break;
+        default:
+            break;
+    }
+    return skaction;
+}
+
+- (SKAction *)animationCorrect {
+    SKAction *zoomIn = [SKAction scaleTo:1.2 duration:0.2];
+    SKAction *zoomOut = [SKAction scaleTo:1.0 duration:0.2];
+    
+    SKAction *animationCorrect = [SKAction sequence:@[zoomIn, zoomOut]];
+    return animationCorrect;
+}
+
+- (SKAction *)animationIncorrect {
+    SKAction *zoomIn = [SKAction scaleTo:1.05 duration:0.05];
+    SKAction *zoomOut = [SKAction scaleTo:1.0 duration:0.05];
+    
+    SKAction *animationCorrect = [SKAction sequence:@[zoomIn, zoomOut, zoomIn, zoomOut]];
+    return animationCorrect;
 }
 
 - (void)initGestureInView:(SKView *)view {
@@ -131,42 +162,41 @@
     hasPendingSwipe = NO;
     
     [self caculatorResult];
-    [self nextTurn];
 }
 
 - (void)caculatorResult{
     switch (arrowType) {
         case ARROW_GREEN:
             if (userDirection == arrowDirection) {
-                NSLog(@"True");
+                [self nextTurn];
             } else {
-                NSLog(@"False");
+                [self wrongResult];
             }
             break;
         case ARROW_RED:
             if (arrowDirection == DirectionRight) {
                 if (userDirection == DirectionLeft) {
-                    NSLog(@"True");
+                    [self nextTurn];
                 } else {
-                    NSLog(@"False");
+                    [self wrongResult];
                 }
             } else if (arrowDirection == DirectionLeft) {
                 if (userDirection == DirectionRight) {
-                    NSLog(@"True");
+                    [self nextTurn];
                 } else {
-                    NSLog(@"False");
+                    [self wrongResult];
                 }
             } else if (arrowDirection == DirectionUp) {
                 if (userDirection == DirectionDown) {
-                    NSLog(@"True");
+                    [self nextTurn];
                 } else {
-                    NSLog(@"False");
+                    [self wrongResult];
                 }
             } else if (arrowDirection == DirectionDown) {
                 if (userDirection == DirectionUp) {
-                    NSLog(@"True");
+                    [self nextTurn];
                 } else {
-                    NSLog(@"False");
+                    [self wrongResult];
                 }
             }
 
@@ -186,6 +216,16 @@
     }];
     
     [self initNode];
+}
+
+- (void)wrongResult {
+ 
+    [self enumerateChildNodesWithName:@"arrow" usingBlock:^(SKNode *node, BOOL *stop) {
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        
+        [node runAction:[self animationIncorrect]];
+    }];
 }
 
 - (void)update:(CFTimeInterval)currentTime {

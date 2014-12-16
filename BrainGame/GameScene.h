@@ -20,6 +20,11 @@ typedef NS_ENUM(NSInteger, SWIPE_Direction) {
     DirectionDown,
 };
 
+typedef enum : NSUInteger {
+    ANIMATION_CORRECT,
+    ANIMATION_IN_CORRECT,
+} ANIMATION_TYPE;
+
 @interface GameScene : SKScene
 
 @end
