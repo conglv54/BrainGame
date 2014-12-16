@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "GameViewController.h"
 
 typedef enum : NSUInteger {
     ARROW_RED,
@@ -25,6 +26,14 @@ typedef enum : NSUInteger {
     ANIMATION_IN_CORRECT,
 } ANIMATION_TYPE;
 
+typedef enum : NSUInteger {
+    STATE_IDLE,
+    STATE_START,
+    STATE_STOP
+} GAME_STATE;
+
 @interface GameScene : SKScene
+
+@property (nonatomic, weak) GameViewController *parrentViewController;
 
 @end

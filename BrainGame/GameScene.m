@@ -7,7 +7,7 @@
 //
 
 #import "GameScene.h"
-#import <AudioToolbox/AudioToolbox.h>
+#import "AGSpriteButton.h"
 
 // The min distance in one direction for an effective swipe.
 #define EFFECTIVE_SWIPE_DISTANCE_THRESHOLD 20.0f
@@ -18,18 +18,49 @@
 
 @implementation GameScene {
     BOOL hasPendingSwipe;
+
     ARROW_TYPE arrowType;
     SWIPE_Direction arrowDirection;
     SWIPE_Direction userDirection;
+    GAME_STATE currentState;
     
+    int score;
+    int time;
+    int startTime;
+    
+    NSTimeInterval timeOfLastCaculator;
+    NSTimeInterval timePerCaculator;
+    
+    SKLabelNode *timeLabel;
+    SKLabelNode *startTimeLabel;
+    SKLabelNode *scoreLabel;
+    
+    AGSpriteButton *btnRetry;
+    AGSpriteButton *btnBack;
 }
 
 -(void)didMoveToView:(SKView *)view {
     [super didMoveToView:view];
     [self initScene];
-    [self nextTurn];
     [self initHud];
+    [self initButton];
+    [self initStartTime];
+    [self initDefaultValue];
     [self initGestureInView:view];
+}
+
+- (void)initDefaultValue {
+    time = 10;
+    startTime = 3;
+    
+    timeOfLastCaculator = 0.0;
+    timePerCaculator = 1.0;
+    
+    timeLabel.hidden = YES;
+    scoreLabel.hidden = YES;
+    btnRetry.hidden = YES;
+    btnBack.hidden = YES;
+    startTimeLabel.hidden = NO;
 }
 
 - (void)initScene {
@@ -37,13 +68,58 @@
 }
 
 - (void)initHud {
-    SKLabelNode *damageLabel = [[SKLabelNode alloc] initWithFontNamed:@"Arial"];
-    damageLabel.name = @"damageLabel";
-    damageLabel.fontSize = 12;
-    damageLabel.fontColor = [UIColor colorWithRed:0.47 green:0.0 blue:0.0 alpha:1.0];
-    damageLabel.text = @"0";
-    damageLabel.position = CGPointMake(25, 40);
-    [self addChild:damageLabel];
+
+    timeLabel = [SKLabelNode labelNodeWithFontNamed:@"Courier"];
+    
+    timeLabel.text = [NSString stringWithFormat:@"%d", time];
+    timeLabel.fontSize = 36;
+    timeLabel.fontColor = [UIColor redColor];
+    timeLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+                                     self.frame.size.height - timeLabel.frame.size.height - 10);
+    
+    [self addChild:timeLabel];
+
+    scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Courier"];
+
+    scoreLabel.text = [NSString stringWithFormat:@"%d", score];
+    scoreLabel.fontSize = 17;
+    scoreLabel.fontColor = [UIColor redColor];
+    scoreLabel.position = CGPointMake(20 , self.frame.size.height - scoreLabel.frame.size.height  - 10);
+    
+    [self addChild:scoreLabel];
+
+}
+
+- (void)initStartTime {
+    startTimeLabel = [SKLabelNode labelNodeWithFontNamed:@"Courier"];
+    startTimeLabel.text = [NSString stringWithFormat:@"%d", startTime];
+    startTimeLabel.fontSize = 72;
+    startTimeLabel.fontColor = [UIColor redColor];
+    startTimeLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+                                     CGRectGetMidY(self.frame));
+    
+    [self addChild:startTimeLabel];
+    
+    [startTimeLabel runAction:[self animationCorrect]];
+}
+
+- (void)initButton {
+    btnRetry = [AGSpriteButton buttonWithColor:[UIColor yellowColor] andSize:CGSizeMake(300, 30)];
+    [btnRetry setLabelWithText:@"Rety" andFont:nil withColor:[UIColor redColor]];
+    btnRetry.position = CGPointMake(self.size.width/2, 80);
+    [btnRetry performBlock:^{
+        [self stepState];
+    } onEvent:AGButtonControlEventTouchUp];
+    [self addChild:btnRetry];
+    
+    btnBack = [AGSpriteButton buttonWithColor:[UIColor greenColor] andSize:CGSizeMake(300, 30)];
+    [btnBack setLabelWithText:@"Back" andFont:nil withColor:[UIColor redColor]];
+    btnBack.position = CGPointMake(self.size.width/2, 20);
+    [btnBack performBlock:^{
+        [self back];
+    } onEvent:AGButtonControlEventTouchUp];
+    [self addChild:btnBack];
+    
 }
 
 - (void)initNode {
@@ -158,10 +234,12 @@
             userDirection = DirectionDown;
         }
     }
+
+    if (currentState == STATE_START) {
+        [self caculatorResult];
+    }
     
     hasPendingSwipe = NO;
-    
-    [self caculatorResult];
 }
 
 - (void)caculatorResult{
@@ -169,34 +247,44 @@
         case ARROW_GREEN:
             if (userDirection == arrowDirection) {
                 [self nextTurn];
+                [self updateScoreCorrect];
             } else {
                 [self wrongResult];
+                [self updateScoreInCorrect];
             }
             break;
         case ARROW_RED:
             if (arrowDirection == DirectionRight) {
                 if (userDirection == DirectionLeft) {
                     [self nextTurn];
+                    [self updateScoreCorrect];
                 } else {
                     [self wrongResult];
+                    [self updateScoreInCorrect];
                 }
             } else if (arrowDirection == DirectionLeft) {
                 if (userDirection == DirectionRight) {
                     [self nextTurn];
+                    [self updateScoreCorrect];
                 } else {
                     [self wrongResult];
+                    [self updateScoreInCorrect];
                 }
             } else if (arrowDirection == DirectionUp) {
                 if (userDirection == DirectionDown) {
                     [self nextTurn];
+                    [self updateScoreCorrect];
                 } else {
                     [self wrongResult];
+                    [self updateScoreInCorrect];
                 }
             } else if (arrowDirection == DirectionDown) {
                 if (userDirection == DirectionUp) {
                     [self nextTurn];
+                    [self updateScoreCorrect];
                 } else {
                     [self wrongResult];
+                    [self updateScoreInCorrect];
                 }
             }
 
@@ -218,18 +306,118 @@
     [self initNode];
 }
 
+- (void)updateScoreCorrect {
+    score ++;
+    [self updateScoreLabel];
+}
+
+- (void)updateScoreInCorrect {
+    score --;
+    [self updateScoreLabel];
+}
+
+- (void)updateScoreLabel {
+    scoreLabel.text = [NSString stringWithFormat:@"%d", score];
+}
+
 - (void)wrongResult {
  
     [self enumerateChildNodesWithName:@"arrow" usingBlock:^(SKNode *node, BOOL *stop) {
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
-        
         [node runAction:[self animationIncorrect]];
     }];
 }
 
 - (void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
+    
+    
+    switch (currentState) {
+        case STATE_IDLE:
+            [self countDownStart:currentTime];
+            break;
+        case STATE_START:
+            [self countDownTime:currentTime];
+            break;
+        case STATE_STOP:
+            
+            break;
+        default:
+            break;
+    }
+    
+}
+
+- (void)stepState {
+    switch (currentState) {
+        case STATE_IDLE:
+            currentState = STATE_START;
+            startTimeLabel.hidden = YES;
+            btnBack.hidden = YES;
+            timeLabel.hidden = NO;
+            scoreLabel.hidden = NO;
+            break;
+        case STATE_START:
+            currentState = STATE_STOP;
+            timeLabel.hidden = YES;
+            btnRetry.hidden = NO;
+            btnBack.hidden = NO;
+            [self enumerateChildNodesWithName:@"arrow" usingBlock:^(SKNode *node, BOOL *stop) {
+                [node removeFromParent];
+            }];
+            
+            break;
+        case STATE_STOP:
+            currentState = STATE_IDLE;
+            timeLabel.hidden = YES;
+            btnRetry.hidden = YES;
+            btnBack.hidden = YES;
+            startTimeLabel.hidden = NO;
+            
+            time = 10;
+            startTime = 3;
+            score = 0;
+            
+            [self updateScoreLabel];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)countDownStart:(CFTimeInterval)currentTime {
+    if (currentTime - timeOfLastCaculator < timePerCaculator) {
+        return;
+    }
+
+    startTimeLabel.text = [NSString stringWithFormat:@"%d", startTime];
+    timeOfLastCaculator = currentTime;
+    
+    startTime --;
+    
+    [startTimeLabel runAction:[self animationCorrect]];
+    
+    if (startTime < 0) {
+        [self nextTurn];
+        [self stepState];
+    }
+}
+
+- (void)countDownTime:(CFTimeInterval)currentTime {
+    if (currentTime - timeOfLastCaculator < timePerCaculator) {
+        return;
+    }
+    
+    time --;
+    timeLabel.text = [NSString stringWithFormat:@"%d", time];
+    timeOfLastCaculator = currentTime;
+    
+    if (time <= 0) {
+        
+        [self stepState];
+    }
+}
+
+- (void)back {
+    [_parrentViewController.navigationController popViewControllerAnimated:YES];
 }
 
 @end
