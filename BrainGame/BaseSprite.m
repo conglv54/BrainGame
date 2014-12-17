@@ -31,7 +31,7 @@
     self = [super initWithTexture:texture];
     
     if (self) {
-        self.position = CGPointMake(CGRectGetMidX(self.parent.frame), CGRectGetMidY(self.parent.frame));
+        self.zRotation = M_PI * direction / 2;
         self.name = @"arrow";
     }
     

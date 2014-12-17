@@ -7,24 +7,13 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "LCConstant.h"
 
 @interface BaseSprite : SKSpriteNode
 
 @end
 
 @interface ArrowSprite : BaseSprite
-
-typedef enum : NSUInteger {
-    ARROW_RED,
-    ARROW_GREEN,
-} ARROW_TYPE;
-
-typedef NS_ENUM(NSInteger, DIRECTION) {
-    DirectionRight,
-    DirectionUp,
-    DirectionLeft,
-    DirectionDown,
-};
 
 @property (nonatomic) ARROW_TYPE type;
 @property (nonatomic) DIRECTION direction;

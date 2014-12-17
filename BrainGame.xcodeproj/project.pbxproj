@@ -19,6 +19,9 @@
 		6E4CC8B61A3EEB47002D8E21 /* arrowRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4CC8B41A3EEB47002D8E21 /* arrowRed@2x.png */; };
 		6E4CC8B71A3EEB47002D8E21 /* arrowGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E4CC8B51A3EEB47002D8E21 /* arrowGreen@2x.png */; };
 		6E4CC8BA1A3FD325002D8E21 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4CC8B91A3FD325002D8E21 /* AudioToolbox.framework */; };
+		6E4D54751A415B9400072663 /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4D54741A415B9400072663 /* AnimationManager.m */; };
+		6E4D54791A41667800072663 /* BaseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4D54781A41667800072663 /* BaseScene.m */; };
+		6E4D547C1A41867900072663 /* LCConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4D547B1A41867900072663 /* LCConstant.m */; };
 		6EAEF2FC1A402B13007D7621 /* AGSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEF2FB1A402B13007D7621 /* AGSpriteButton.m */; };
 		6EAEF3011A4040C1007D7621 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEF3001A4040C1007D7621 /* BaseSprite.m */; };
 /* End PBXBuildFile section */
@@ -53,6 +56,12 @@
 		6E4CC8B41A3EEB47002D8E21 /* arrowRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowRed@2x.png"; sourceTree = "<group>"; };
 		6E4CC8B51A3EEB47002D8E21 /* arrowGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowGreen@2x.png"; sourceTree = "<group>"; };
 		6E4CC8B91A3FD325002D8E21 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6E4D54731A415B9400072663 /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
+		6E4D54741A415B9400072663 /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
+		6E4D54771A41667800072663 /* BaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScene.h; sourceTree = "<group>"; };
+		6E4D54781A41667800072663 /* BaseScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScene.m; sourceTree = "<group>"; };
+		6E4D547A1A41867900072663 /* LCConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCConstant.h; sourceTree = "<group>"; };
+		6E4D547B1A41867900072663 /* LCConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCConstant.m; sourceTree = "<group>"; };
 		6EAEF2FA1A402B13007D7621 /* AGSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSpriteButton.h; sourceTree = "<group>"; };
 		6EAEF2FB1A402B13007D7621 /* AGSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSpriteButton.m; sourceTree = "<group>"; };
 		6EAEF2FF1A4040C1007D7621 /* BaseSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSprite.h; sourceTree = "<group>"; };
@@ -99,6 +108,8 @@
 		6E4CC8881A3EE521002D8E21 /* BrainGame */ = {
 			isa = PBXGroup;
 			children = (
+				6E4D54761A41666000072663 /* Scene */,
+				6E4D54721A415B7E00072663 /* Animation */,
 				6EAEF2FE1A404099007D7621 /* Sprite */,
 				6E4CC88D1A3EE521002D8E21 /* AppDelegate.h */,
 				6E4CC88E1A3EE521002D8E21 /* AppDelegate.m */,
@@ -108,6 +119,7 @@
 				6E4CC8951A3EE521002D8E21 /* GameViewController.h */,
 				6E4CC8961A3EE521002D8E21 /* GameViewController.m */,
 				6E4CC8981A3EE521002D8E21 /* Main.storyboard */,
+				6E4D547D1A41868000072663 /* Constant */,
 				6EAEF2F91A402B07007D7621 /* Library */,
 				6E4CC89B1A3EE521002D8E21 /* Images.xcassets */,
 				6E4CC89D1A3EE521002D8E21 /* LaunchScreen.xib */,
@@ -159,6 +171,33 @@
 				6E4CC8B91A3FD325002D8E21 /* AudioToolbox.framework */,
 			);
 			name = FrameWork;
+			sourceTree = "<group>";
+		};
+		6E4D54721A415B7E00072663 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				6E4D54731A415B9400072663 /* AnimationManager.h */,
+				6E4D54741A415B9400072663 /* AnimationManager.m */,
+			);
+			name = Animation;
+			sourceTree = "<group>";
+		};
+		6E4D54761A41666000072663 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				6E4D54771A41667800072663 /* BaseScene.h */,
+				6E4D54781A41667800072663 /* BaseScene.m */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
+		};
+		6E4D547D1A41868000072663 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				6E4D547A1A41867900072663 /* LCConstant.h */,
+				6E4D547B1A41867900072663 /* LCConstant.m */,
+			);
+			name = Constant;
 			sourceTree = "<group>";
 		};
 		6EAEF2F91A402B07007D7621 /* Library */ = {
@@ -293,9 +332,12 @@
 				6E4CC8971A3EE521002D8E21 /* GameViewController.m in Sources */,
 				6E4CC88F1A3EE521002D8E21 /* AppDelegate.m in Sources */,
 				6EAEF2FC1A402B13007D7621 /* AGSpriteButton.m in Sources */,
+				6E4D547C1A41867900072663 /* LCConstant.m in Sources */,
 				6E4CC8921A3EE521002D8E21 /* GameScene.m in Sources */,
+				6E4D54751A415B9400072663 /* AnimationManager.m in Sources */,
 				6E4CC88C1A3EE521002D8E21 /* main.m in Sources */,
 				6EAEF3011A4040C1007D7621 /* BaseSprite.m in Sources */,
+				6E4D54791A41667800072663 /* BaseScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
