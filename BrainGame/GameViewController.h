@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseScene.h"
 #import <SpriteKit/SpriteKit.h>
 
 @interface GameViewController : UIViewController
+
+@property (nonatomic) int gameType;
 
 @end

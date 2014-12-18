@@ -35,7 +35,6 @@
 
 -(void)didMoveToView:(SKView *)view {
     [super didMoveToView:view];
-    [self initScene];
     [self initHud];
     [self initButton];
     [self initStartTime];
@@ -56,10 +55,6 @@
     btnRetry.hidden = YES;
     btnBack.hidden = YES;
     startTimeLabel.hidden = NO;
-}
-
-- (void)initScene {
-    self.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)initHud {
@@ -140,7 +135,59 @@
 
 #pragma mark - ()
 
- 
+- (void)caculatorResult{
+    switch (arrowType) {
+        case ARROW_GREEN:
+            if (userDirection == arrowDirection) {
+                [self nextTurn];
+                [self updateScoreCorrect];
+            } else {
+                [self wrongResult];
+                [self updateScoreInCorrect];
+            }
+            break;
+        case ARROW_RED:
+            if (arrowDirection == DirectionRight) {
+                if (userDirection == DirectionLeft) {
+                    [self nextTurn];
+                    [self updateScoreCorrect];
+                } else {
+                    [self wrongResult];
+                    [self updateScoreInCorrect];
+                }
+            } else if (arrowDirection == DirectionLeft) {
+                if (userDirection == DirectionRight) {
+                    [self nextTurn];
+                    [self updateScoreCorrect];
+                } else {
+                    [self wrongResult];
+                    [self updateScoreInCorrect];
+                }
+            } else if (arrowDirection == DirectionUp) {
+                if (userDirection == DirectionDown) {
+                    [self nextTurn];
+                    [self updateScoreCorrect];
+                } else {
+                    [self wrongResult];
+                    [self updateScoreInCorrect];
+                }
+            } else if (arrowDirection == DirectionDown) {
+                if (userDirection == DirectionUp) {
+                    [self nextTurn];
+                    [self updateScoreCorrect];
+                } else {
+                    [self wrongResult];
+                    [self updateScoreInCorrect];
+                }
+            }
+
+
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)nextTurn {
     arrowType = arc4random() % 2;
     arrowDirection = arc4random() % 4;

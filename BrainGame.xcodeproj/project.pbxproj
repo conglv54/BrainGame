@@ -22,6 +22,8 @@
 		6E4D54751A415B9400072663 /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4D54741A415B9400072663 /* AnimationManager.m */; };
 		6E4D54791A41667800072663 /* BaseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4D54781A41667800072663 /* BaseScene.m */; };
 		6E4D547C1A41867900072663 /* LCConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4D547B1A41867900072663 /* LCConstant.m */; };
+		6E4D54801A426F0A00072663 /* CaculatorGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4D547F1A426F0A00072663 /* CaculatorGame.m */; };
+		6E4D54831A42715100072663 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4D54821A42715100072663 /* MainViewController.m */; };
 		6EAEF2FC1A402B13007D7621 /* AGSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEF2FB1A402B13007D7621 /* AGSpriteButton.m */; };
 		6EAEF3011A4040C1007D7621 /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEF3001A4040C1007D7621 /* BaseSprite.m */; };
 /* End PBXBuildFile section */
@@ -62,6 +64,10 @@
 		6E4D54781A41667800072663 /* BaseScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScene.m; sourceTree = "<group>"; };
 		6E4D547A1A41867900072663 /* LCConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCConstant.h; sourceTree = "<group>"; };
 		6E4D547B1A41867900072663 /* LCConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCConstant.m; sourceTree = "<group>"; };
+		6E4D547E1A426F0A00072663 /* CaculatorGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaculatorGame.h; sourceTree = "<group>"; };
+		6E4D547F1A426F0A00072663 /* CaculatorGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaculatorGame.m; sourceTree = "<group>"; };
+		6E4D54811A42715100072663 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		6E4D54821A42715100072663 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		6EAEF2FA1A402B13007D7621 /* AGSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSpriteButton.h; sourceTree = "<group>"; };
 		6EAEF2FB1A402B13007D7621 /* AGSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSpriteButton.m; sourceTree = "<group>"; };
 		6EAEF2FF1A4040C1007D7621 /* BaseSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSprite.h; sourceTree = "<group>"; };
@@ -118,6 +124,8 @@
 				6E4CC8931A3EE521002D8E21 /* GameScene.sks */,
 				6E4CC8951A3EE521002D8E21 /* GameViewController.h */,
 				6E4CC8961A3EE521002D8E21 /* GameViewController.m */,
+				6E4D54811A42715100072663 /* MainViewController.h */,
+				6E4D54821A42715100072663 /* MainViewController.m */,
 				6E4CC8981A3EE521002D8E21 /* Main.storyboard */,
 				6E4D547D1A41868000072663 /* Constant */,
 				6EAEF2F91A402B07007D7621 /* Library */,
@@ -187,6 +195,8 @@
 			children = (
 				6E4D54771A41667800072663 /* BaseScene.h */,
 				6E4D54781A41667800072663 /* BaseScene.m */,
+				6E4D547E1A426F0A00072663 /* CaculatorGame.h */,
+				6E4D547F1A426F0A00072663 /* CaculatorGame.m */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -329,8 +339,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E4D54831A42715100072663 /* MainViewController.m in Sources */,
 				6E4CC8971A3EE521002D8E21 /* GameViewController.m in Sources */,
 				6E4CC88F1A3EE521002D8E21 /* AppDelegate.m in Sources */,
+				6E4D54801A426F0A00072663 /* CaculatorGame.m in Sources */,
 				6EAEF2FC1A402B13007D7621 /* AGSpriteButton.m in Sources */,
 				6E4D547C1A41867900072663 /* LCConstant.m in Sources */,
 				6E4CC8921A3EE521002D8E21 /* GameScene.m in Sources */,

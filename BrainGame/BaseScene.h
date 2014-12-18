@@ -22,4 +22,6 @@
 @property (nonatomic, weak) UIViewController *parrentViewController;
 @property (nonatomic, weak) id<SwipeDelegate> swipeDelegate;
 
+- (void)initSetup;
+
 @end

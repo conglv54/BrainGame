@@ -18,7 +18,17 @@
 - (void)didMoveToView:(SKView *)view {
     [super didMoveToView:view];
     
+    [self setupScene];
+    [self initSetup];
     [self initGestureInView:view];
+}
+
+- (void)setupScene {
+    self.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)initSetup {
+
 }
 
 - (void)initGestureInView:(SKView *)view {

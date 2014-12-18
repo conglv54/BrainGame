@@ -8,6 +8,7 @@
 
 #import "GameViewController.h"
 #import "GameScene.h"
+#import "CaculatorGame.h"
 
 @implementation SKScene (Unarchive)
 
@@ -28,7 +29,7 @@
 
 @end
 
-@implementation GameViewController
+@implementation GameViewController 
 
 - (void)viewDidLoad
 {
@@ -47,12 +48,19 @@
     skView.ignoresSiblingOrder = YES;
     
     // Create and configure the scene.
-    GameScene *scene = [[GameScene alloc] initWithSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
-    scene.parrentViewController = self;
-    scene.scaleMode = SKSceneScaleModeAspectFill;
+    BaseScene *mScene;
+    
+    if (_gameType == 1000) {
+        mScene = [[CaculatorGame alloc] initWithSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
+    } else if (_gameType == 1001) {
+        mScene = [[GameScene alloc] initWithSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
+    }
+    
+    mScene.parrentViewController = self;
+    mScene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
-    [skView presentScene:scene];
+    [skView presentScene:mScene];
     
 }
 
